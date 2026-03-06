@@ -189,61 +189,42 @@ function loadCaseData() {
     });
 }
 
-// ——— SPARQL query builder ———
+// ——— SPARQL query builder (optimized for speed) ———
 function buildCourtQuery(caseNumber, caseTitle, companies) {
   var cleanNum = caseNumber ? caseNumber.replace(/^AT\./, "").replace(/^COMP\//, "") : "";
-  var searchTerms = [];
+  var mainTerm = "";
 
+  // Use only ONE company/title term to keep queries fast
   if (companies && companies.length > 0) {
-    companies.forEach(function(c) {
-      var words = c.split(/[\s,\/\(\)]+/).filter(function(w) { return w.length > 3; });
-      if (words.length > 0) searchTerms.push(words[0].toLowerCase().replace(/"/g, ""));
-    });
+    var w = companies[0].split(/[\s,\/\(\)]+/).filter(function(x) { return x.length > 3; });
+    if (w.length > 0) mainTerm = w[0].toLowerCase().replace(/"/g, "");
   }
-  if (caseTitle) {
+  if (!mainTerm && caseTitle) {
     var tw = caseTitle.split(/[\s\/\(\)\-]+/).filter(function(w) {
       return w.length > 3 && ["case","commission","the","and","for","with"].indexOf(w.toLowerCase()) === -1;
     });
-    if (tw.length > 0) searchTerms.push(tw[0].toLowerCase().replace(/"/g, ""));
+    if (tw.length > 0) mainTerm = tw[0].toLowerCase().replace(/"/g, "");
   }
 
-  var seen = {};
-  searchTerms = searchTerms.filter(function(t) { if (seen[t]) return false; seen[t] = true; return true; });
-  if (searchTerms.length === 0 && !cleanNum) return null;
+  if (!cleanNum && !mainTerm) return null;
 
   var filters = [];
-  if (cleanNum) filters.push('CONTAINS(STR(?courtTitle), "' + cleanNum + '")');
-  searchTerms.forEach(function(term) {
-    filters.push('(CONTAINS(LCASE(STR(?courtTitle)), "' + term + '") && CONTAINS(LCASE(STR(?courtTitle)), "commission"))');
-  });
+  if (cleanNum) filters.push('CONTAINS(STR(?t),"' + cleanNum + '")');
+  if (mainTerm) filters.push('(CONTAINS(LCASE(STR(?t)),"' + mainTerm + '")&&CONTAINS(LCASE(STR(?t)),"commission"))');
 
-  return 'PREFIX cdm: <http://publications.europa.eu/ontology/cdm#>\n'
-    + 'SELECT DISTINCT ?courtCelex ?courtTitle ?courtDate ?courtType WHERE {\n'
-    + '  ?courtWork cdm:work_has_resource-type ?type .\n'
-    + '  FILTER(?type IN (\n'
-    + '    <http://publications.europa.eu/resource/authority/resource-type/JUDG>,\n'
-    + '    <http://publications.europa.eu/resource/authority/resource-type/ORDER>,\n'
-    + '    <http://publications.europa.eu/resource/authority/resource-type/OPIN_AG>,\n'
-    + '    <http://publications.europa.eu/resource/authority/resource-type/VIEW_AG>\n'
-    + '  ))\n'
-    + '  ?courtExpr cdm:expression_belongs_to_work ?courtWork .\n'
-    + '  ?courtExpr cdm:expression_uses_language <http://publications.europa.eu/resource/authority/language/ENG> .\n'
-    + '  ?courtExpr cdm:expression_title ?courtTitle .\n'
-    + '  FILTER(' + filters.join(" || ") + ')\n'
-    + '  OPTIONAL { ?courtWork cdm:resource_legal_id_celex ?courtCelex . }\n'
-    + '  OPTIONAL { ?courtWork cdm:work_date_document ?courtDate . }\n'
-    + '  OPTIONAL { ?courtWork cdm:work_has_resource-type ?courtTypeURI .\n'
-    + '    BIND(\n'
-    + '      IF(?courtTypeURI = <http://publications.europa.eu/resource/authority/resource-type/JUDG>, "Judgment",\n'
-    + '      IF(?courtTypeURI = <http://publications.europa.eu/resource/authority/resource-type/ORDER>, "Order",\n'
-    + '      IF(?courtTypeURI = <http://publications.europa.eu/resource/authority/resource-type/OPIN_AG>, "AG Opinion",\n'
-    + '      IF(?courtTypeURI = <http://publications.europa.eu/resource/authority/resource-type/VIEW_AG>, "AG View",\n'
-    + '      "Other")))) AS ?courtType\n'
-    + '    )\n'
-    + '  }\n'
-    + '}\n'
-    + 'ORDER BY DESC(?courtDate)\n'
-    + 'LIMIT 50';
+  return 'PREFIX cdm:<http://publications.europa.eu/ontology/cdm#> '
+    + 'SELECT DISTINCT ?c ?t ?d WHERE { '
+    + '?w cdm:work_has_resource-type ?ty. '
+    + 'FILTER(?ty IN(<http://publications.europa.eu/resource/authority/resource-type/JUDG>,'
+    + '<http://publications.europa.eu/resource/authority/resource-type/ORDER>,'
+    + '<http://publications.europa.eu/resource/authority/resource-type/OPIN_AG>)) '
+    + '?e cdm:expression_belongs_to_work ?w. '
+    + '?e cdm:expression_uses_language <http://publications.europa.eu/resource/authority/language/ENG>. '
+    + '?e cdm:expression_title ?t. '
+    + 'FILTER(' + filters.join("||") + ') '
+    + 'OPTIONAL{?w cdm:resource_legal_id_celex ?c.} '
+    + 'OPTIONAL{?w cdm:work_date_document ?d.} '
+    + '} ORDER BY DESC(?d) LIMIT 30';
 }
 
 // ——— SPARQL execution with fallback endpoints ———
@@ -312,8 +293,14 @@ function fetchCourtCases(caseNum) {
       var seen = {};
       var unique = [];
       rows.forEach(function(r) {
-        var key = r.courtCelex || r.courtTitle;
-        if (!seen[key]) { seen[key] = true; unique.push(r); }
+        // Map short SPARQL vars to display names
+        var obj = {
+          courtCelex: r.c || r.courtCelex,
+          courtTitle: r.t || r.courtTitle,
+          courtDate: r.d || r.courtDate
+        };
+        var key = obj.courtCelex || obj.courtTitle;
+        if (!seen[key]) { seen[key] = true; unique.push(obj); }
       });
       delete caseLoadingSet[caseNum];
       caseLawCache[caseNum] = unique;
