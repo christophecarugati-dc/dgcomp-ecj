@@ -111,32 +111,49 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 // ═══════════════════════════════════════════════════════════════════
 
 // SPARQL endpoints — tried in order until one works
+var CELLAR_BASE = "https://publications.europa.eu/webapi/rdf/sparql";
+
+function cellarUrl(query) {
+  return CELLAR_BASE + "?query=" + encodeURIComponent(query)
+    + "&format=" + encodeURIComponent("application/sparql-results+json");
+}
+
 var SPARQL_ENDPOINTS = [
   {
-    name: "Sparnatural CORS Proxy",
-    makeUrl: function(query) {
-      return "https://proxy.sparnatural.eu/sparql-proxy/sparql"
-        + "?endpoint=" + encodeURIComponent("https://publications.europa.eu/webapi/rdf/sparql")
-        + "&query=" + encodeURIComponent(query)
-        + "&format=" + encodeURIComponent("application/sparql-results+json");
-    }
+    name: "CELLAR Direct",
+    makeUrl: function(query) { return cellarUrl(query); },
+    parseResponse: function(text) { return JSON.parse(text); }
   },
   {
-    name: "CELLAR Direct",
+    name: "Sparnatural Proxy",
     makeUrl: function(query) {
-      return "https://publications.europa.eu/webapi/rdf/sparql"
-        + "?query=" + encodeURIComponent(query)
+      return "https://proxy.sparnatural.eu/sparql-proxy/sparql"
+        + "?endpoint=" + encodeURIComponent(CELLAR_BASE)
+        + "&query=" + encodeURIComponent(query)
         + "&format=" + encodeURIComponent("application/sparql-results+json");
-    }
+    },
+    parseResponse: function(text) { return JSON.parse(text); }
+  },
+  {
+    name: "AllOrigins Proxy",
+    makeUrl: function(query) {
+      return "https://api.allorigins.win/raw?url=" + encodeURIComponent(cellarUrl(query));
+    },
+    parseResponse: function(text) { return JSON.parse(text); }
+  },
+  {
+    name: "Corsfix Proxy",
+    makeUrl: function(query) {
+      return "https://proxy.corsfix.com/?" + encodeURIComponent(cellarUrl(query));
+    },
+    parseResponse: function(text) { return JSON.parse(text); }
   },
   {
     name: "corsproxy.io",
     makeUrl: function(query) {
-      var target = "https://publications.europa.eu/webapi/rdf/sparql"
-        + "?query=" + encodeURIComponent(query)
-        + "&format=" + encodeURIComponent("application/sparql-results+json");
-      return "https://corsproxy.io/?" + encodeURIComponent(target);
-    }
+      return "https://corsproxy.io/?url=" + encodeURIComponent(cellarUrl(query));
+    },
+    parseResponse: function(text) { return JSON.parse(text); }
   }
 ];
 
@@ -259,11 +276,12 @@ function executeSparql(query, idx) {
     idx = workingEndpoint >= 0 ? workingEndpoint : 0;
   }
   if (idx >= SPARQL_ENDPOINTS.length) {
-    return Promise.reject(new Error("All " + SPARQL_ENDPOINTS.length + " SPARQL endpoints failed. EU CELLAR may be unavailable."));
+    return Promise.reject(new Error("All " + SPARQL_ENDPOINTS.length + " SPARQL endpoints failed. Check browser console (F12) for details."));
   }
 
   var ep = SPARQL_ENDPOINTS[idx];
   var url = ep.makeUrl(query);
+  console.log("Trying endpoint " + idx + " (" + ep.name + "):", url.substring(0, 120) + "...");
 
   return fetch(url, {
     method: "GET",
@@ -276,11 +294,12 @@ function executeSparql(query, idx) {
   .then(function(rawText) {
     if (!rawText || rawText.trim().length === 0) throw new Error(ep.name + " returned empty response");
     var data;
-    try { data = JSON.parse(rawText); }
+    try { data = ep.parseResponse(rawText); }
     catch(e) { throw new Error(ep.name + " bad JSON: " + rawText.substring(0, 120)); }
     if (!data.results || !data.results.bindings) throw new Error(ep.name + " unexpected structure");
 
     workingEndpoint = idx;
+    console.log("SUCCESS via " + ep.name + ": " + data.results.bindings.length + " results");
     return data.results.bindings.map(function(b) {
       var row = {};
       Object.keys(b).forEach(function(k) { row[k] = b[k].value; });
