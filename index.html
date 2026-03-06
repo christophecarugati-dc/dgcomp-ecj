@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DG COMP Decisions &harr; ECJ/GC Court Cases</title>
+<title>DG COMP Decisions - ECJ/GC Court Cases</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f8f9fa;color:#1a1a2e;font-size:14px;line-height:1.5;padding:12px}
@@ -21,7 +21,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .pill:hover{background:#e8eef6;border-color:#003399}
 .pill.active{background:#003399;color:#fff;border-color:#003399}
 .status-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#e8eef6;border-radius:6px;margin-bottom:10px;font-size:12px;color:#003399}
-#debugBar{padding:8px 12px;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:6px;font-size:12px;margin-bottom:10px;word-break:break-all}
+#debugBar{padding:8px 12px;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:6px;font-size:12px;margin-bottom:10px}
 .decision{border:1px solid #e5e7eb;border-radius:8px;margin-bottom:6px;background:#fff;overflow:hidden;transition:box-shadow 0.2s}
 .decision:hover{box-shadow:0 2px 8px rgba(0,0,0,0.06)}
 .decision.expanded{border-color:#003399;box-shadow:0 2px 12px rgba(0,51,153,0.1)}
@@ -40,18 +40,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .comp-link:hover{text-decoration:underline}
 .case-law-panel{padding:12px 16px;background:#f0f4ff;border-top:1px solid #e0e7ff}
 .panel-header{font-weight:700;font-size:13px;color:#003399;margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.court-case{padding:10px 12px;background:#fff;border:1px solid #e0e7ff;border-radius:6px;margin-bottom:6px}
-.court-title{font-weight:600;font-size:13px;color:#1a1a2e;margin-bottom:4px}
-.court-meta{display:flex;flex-wrap:wrap;gap:6px;font-size:11px;color:#666;align-items:center}
-.court-celex{font-weight:700;color:#003399}
-.court-type{padding:1px 6px;background:#e8f5e9;color:#2e7d32;border-radius:3px;font-weight:600}
-.eurlex-link{color:#003399;text-decoration:none;font-weight:600}
-.eurlex-link:hover{text-decoration:underline}
-.case-loading{display:flex;align-items:center;gap:8px;color:#666;font-size:13px;padding:8px 0}
-.mini-spinner{width:16px;height:16px;border:2px solid #e0e7ff;border-top:2px solid #003399;border-radius:50%;animation:spin 0.8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.no-cases{color:#888;font-size:13px;font-style:italic;padding:8px 0}
-.error-box{color:#c62828;background:#fce4ec;padding:8px 12px;border-radius:6px;font-size:12px}
+.court-links{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.court-link-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:#003399;color:#fff;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600;transition:background 0.2s}
+.court-link-btn:hover{background:#002266}
+.court-link-btn.secondary{background:#fff;color:#003399;border:1.5px solid #003399}
+.court-link-btn.secondary:hover{background:#e8eef6}
+.search-tips{font-size:12px;color:#666;margin-top:6px;padding:8px 12px;background:#fff;border:1px solid #e0e7ff;border-radius:6px}
+.search-tips strong{color:#003399}
 .empty{text-align:center;padding:40px 20px;color:#888}
 .empty-icon{font-size:40px;margin-bottom:12px}
 .pagination{display:flex;justify-content:center;gap:4px;margin-top:16px;flex-wrap:wrap}
@@ -61,6 +56,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .page-btn:disabled{opacity:0.4;cursor:default}
 .loading-box{text-align:center;padding:40px}
 .spinner{width:36px;height:36px;border:3px solid #e0e7ff;border-top:3px solid #003399;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
 .footer{text-align:center;padding:12px;font-size:11px;color:#999;margin-top:16px;border-top:1px solid #eee}
 .footer a{color:#003399;text-decoration:none}
 .footer a:hover{text-decoration:underline}
@@ -69,12 +65,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 <body>
 
 <div class="header">
-  <h1>DG COMP Decisions &harr; Court Cases</h1>
-  <p><span id="totalCount">0</span> antitrust &amp; cartel decisions &middot; linked to ECJ/General Court via EU CELLAR SPARQL</p>
+  <h1>DG COMP Decisions &#8596; Court Cases</h1>
+  <p><span id="totalCount">0</span> antitrust &amp; cartel decisions &#183; linked to ECJ/General Court via InfoCuria</p>
 </div>
 
 <div class="search-bar">
-  <input type="text" id="searchInput" placeholder="Search cases, companies, case numbers&hellip;">
+  <input type="text" id="searchInput" placeholder="Search cases, companies, case numbers...">
   <select id="typeFilter">
     <option value="">All types</option>
     <option value="Antitrust">Antitrust</option>
@@ -84,68 +80,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 </div>
 <div id="quickFilters"></div>
 
-<div id="debugBar">Loading case data&hellip;</div>
+<div id="debugBar">Loading case data...</div>
 
 <div id="statusBar" class="status-bar" style="display:none;"></div>
 
 <div id="loadingBox" class="loading-box">
   <div class="spinner"></div>
-  <div>Loading DG COMP decisions&hellip;</div>
+  <div>Loading DG COMP decisions...</div>
 </div>
 
 <div id="results"></div>
 
 <div class="footer">
-  Decisions: <a href="https://data.europa.eu" target="_blank">DG COMP Open Data</a> &middot;
-  Court cases: <a href="https://publications.europa.eu/en/web/cellar" target="_blank">EU CELLAR SPARQL</a> &middot;
+  Decisions: <a href="https://data.europa.eu" target="_blank">DG COMP Open Data</a> &#183;
+  Court cases: <a href="https://infocuria.curia.europa.eu" target="_blank">InfoCuria (CJEU)</a> &#183;
   <a href="https://www.digital-competition.com" target="_blank">digital-competition.com</a>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════════════════
-// DG COMP ↔ ECJ/GC Case Linker — GitHub Pages Edition
-//
-// Hosted externally, so fetch() works without Wix sandbox issues.
-// Cases loaded from cases.json in same directory.
-// Court cases queried from EU CELLAR via CORS proxy.
-// ═══════════════════════════════════════════════════════════════════
-
-// SPARQL endpoints — tried in order until one works
-var CELLAR_BASE = "https://publications.europa.eu/webapi/rdf/sparql";
-
-function cellarUrl(query) {
-  return CELLAR_BASE + "?query=" + encodeURIComponent(query)
-    + "&format=" + encodeURIComponent("application/sparql-results+json");
-}
-
-var SPARQL_ENDPOINTS = [
-  {
-    name: "AllOrigins Proxy",
-    makeUrl: function(query) {
-      return "https://api.allorigins.win/raw?url=" + encodeURIComponent(cellarUrl(query));
-    },
-    parseResponse: function(text) { return JSON.parse(text); }
-  },
-  {
-    name: "CELLAR Direct",
-    makeUrl: function(query) { return cellarUrl(query); },
-    parseResponse: function(text) { return JSON.parse(text); }
-  }
-];
-
 var QUICK = ["Google","Apple","Microsoft","Intel","Qualcomm","Amazon","Meta","cartel","abuse","Art. 102","Art. 101"];
 var PAGE_SIZE = 40;
 var allCases = [];
 var filtered = [];
 var expandedCase = null;
-var caseLawCache = {};
-var caseLoadingSet = {};
 var currentPage = 0;
-var workingEndpoint = -1;
 
 function $(id) { return document.getElementById(id); }
 
-// ——— Quick filter pills ———
 QUICK.forEach(function(term) {
   var p = document.createElement("button");
   p.className = "pill";
@@ -157,176 +118,77 @@ $("btnSearch").addEventListener("click", doFilter);
 $("searchInput").addEventListener("keydown", function(e) { if (e.key === "Enter") doFilter(); });
 $("typeFilter").addEventListener("change", doFilter);
 
-// ——— Load case data from cases.json (same directory) ———
 function loadCaseData() {
-  $("debugBar").textContent = "Fetching cases.json\u2026";
+  $("debugBar").textContent = "Fetching cases...";
   fetch("cases.json")
     .then(function(resp) {
       if (!resp.ok) throw new Error("HTTP " + resp.status);
       return resp.json();
     })
     .then(function(data) {
-      if (Array.isArray(data)) {
-        allCases = data;
-      } else if (data && Array.isArray(data.data)) {
-        allCases = data.data;
-      } else {
-        throw new Error("Unexpected JSON structure");
-      }
+      if (Array.isArray(data)) allCases = data;
+      else if (data && Array.isArray(data.data)) allCases = data.data;
+      else throw new Error("Unexpected JSON");
       if (!allCases.length) throw new Error("No cases found");
-
       $("totalCount").textContent = allCases.length;
       $("loadingBox").style.display = "none";
-      showDebug("success", "Loaded " + allCases.length + " DG COMP decisions");
+      $("debugBar").textContent = "Loaded " + allCases.length + " DG COMP decisions";
+      $("debugBar").style.background = "#e8f5e9";
+      $("debugBar").style.color = "#1b5e20";
+      setTimeout(function() { $("debugBar").style.display = "none"; }, 3000);
       filtered = allCases;
       render();
     })
     .catch(function(err) {
-      showDebug("error", "Failed to load cases: " + err.message);
-      $("loadingBox").innerHTML = '<div class="empty"><div class="empty-icon">&#9888;</div>'
-        + '<h2>Could not load case data</h2><p>' + h(err.message) + '</p>'
-        + '<p style="margin-top:8px;font-size:12px;color:#666;">Make sure cases.json is in the same directory as index.html</p></div>';
+      $("debugBar").textContent = "Error: " + err.message;
+      $("debugBar").style.background = "#fce4e4";
+      $("debugBar").style.color = "#8b1a1a";
+      $("loadingBox").innerHTML = '<div class="empty"><h2>Could not load cases</h2><p>' + h(err.message) + '</p></div>';
     });
 }
 
-// ——— SPARQL query builder (optimized for speed) ———
-function buildCourtQuery(caseNumber, caseTitle, companies) {
-  var cleanNum = caseNumber ? caseNumber.replace(/^AT\./, "").replace(/^COMP\//, "") : "";
-  var mainTerm = "";
+function buildInfoCuriaLinks(caseNum, caseTitle, companies) {
+  var links = [];
+  var cleanNum = caseNum ? caseNum.replace(/^AT\./, "").replace(/^COMP\//, "") : "";
 
-  // Use only ONE company/title term to keep queries fast
+  if (cleanNum) {
+    links.push({
+      label: "Search InfoCuria for " + caseNum,
+      url: "https://infocuria.curia.europa.eu/tabs/affair?lang=en&searchTerm=%22" + encodeURIComponent(cleanNum) + "%22",
+      primary: true
+    });
+  }
+
   if (companies && companies.length > 0) {
-    var w = companies[0].split(/[\s,\/\(\)]+/).filter(function(x) { return x.length > 3; });
-    if (w.length > 0) mainTerm = w[0].toLowerCase().replace(/"/g, "");
-  }
-  if (!mainTerm && caseTitle) {
-    var tw = caseTitle.split(/[\s\/\(\)\-]+/).filter(function(w) {
-      return w.length > 3 && ["case","commission","the","and","for","with"].indexOf(w.toLowerCase()) === -1;
-    });
-    if (tw.length > 0) mainTerm = tw[0].toLowerCase().replace(/"/g, "");
-  }
-
-  if (!cleanNum && !mainTerm) return null;
-
-  var filters = [];
-  if (cleanNum) filters.push('CONTAINS(STR(?t),"' + cleanNum + '")');
-  if (mainTerm) filters.push('(CONTAINS(LCASE(STR(?t)),"' + mainTerm + '")&&CONTAINS(LCASE(STR(?t)),"commission"))');
-
-  return 'PREFIX cdm:<http://publications.europa.eu/ontology/cdm#> '
-    + 'SELECT DISTINCT ?c ?t ?d WHERE { '
-    + '?w cdm:work_has_resource-type ?ty. '
-    + 'FILTER(?ty IN(<http://publications.europa.eu/resource/authority/resource-type/JUDG>,'
-    + '<http://publications.europa.eu/resource/authority/resource-type/ORDER>,'
-    + '<http://publications.europa.eu/resource/authority/resource-type/OPIN_AG>)) '
-    + '?e cdm:expression_belongs_to_work ?w. '
-    + '?e cdm:expression_uses_language <http://publications.europa.eu/resource/authority/language/ENG>. '
-    + '?e cdm:expression_title ?t. '
-    + 'FILTER(' + filters.join("||") + ') '
-    + 'OPTIONAL{?w cdm:resource_legal_id_celex ?c.} '
-    + 'OPTIONAL{?w cdm:work_date_document ?d.} '
-    + '} ORDER BY DESC(?d) LIMIT 30';
-}
-
-// ——— SPARQL execution with fallback endpoints ———
-function executeSparql(query, idx) {
-  if (typeof idx === "undefined") {
-    idx = workingEndpoint >= 0 ? workingEndpoint : 0;
-  }
-  if (idx >= SPARQL_ENDPOINTS.length) {
-    return Promise.reject(new Error("All " + SPARQL_ENDPOINTS.length + " SPARQL endpoints failed. Check browser console (F12) for details."));
-  }
-
-  var ep = SPARQL_ENDPOINTS[idx];
-  var url = ep.makeUrl(query);
-  console.log("Trying endpoint " + idx + " (" + ep.name + "):", url.substring(0, 120) + "...");
-
-  return fetch(url, {
-    method: "GET",
-    headers: { "Accept": "application/sparql-results+json" }
-  })
-  .then(function(response) {
-    if (!response.ok) throw new Error(ep.name + " HTTP " + response.status);
-    return response.text();
-  })
-  .then(function(rawText) {
-    if (!rawText || rawText.trim().length === 0) throw new Error(ep.name + " returned empty response");
-    var data;
-    try { data = ep.parseResponse(rawText); }
-    catch(e) { throw new Error(ep.name + " bad JSON: " + rawText.substring(0, 120)); }
-    if (!data.results || !data.results.bindings) throw new Error(ep.name + " unexpected structure");
-
-    workingEndpoint = idx;
-    console.log("SUCCESS via " + ep.name + ": " + data.results.bindings.length + " results");
-    return data.results.bindings.map(function(b) {
-      var row = {};
-      Object.keys(b).forEach(function(k) { row[k] = b[k].value; });
-      return row;
-    });
-  })
-  .catch(function(err) {
-    console.warn("Endpoint " + idx + " (" + ep.name + ") failed:", err.message);
-    return executeSparql(query, idx + 1);
-  });
-}
-
-// ——— Fetch court cases for a DG COMP decision ———
-function fetchCourtCases(caseNum) {
-  var c = null;
-  for (var i = 0; i < allCases.length; i++) {
-    if (allCases[i].n === caseNum) { c = allCases[i]; break; }
-  }
-  if (!c) return;
-
-  caseLoadingSet[caseNum] = true;
-  render();
-
-  var query = buildCourtQuery(caseNum, c.t || "", c.c || []);
-  if (!query) {
-    delete caseLoadingSet[caseNum];
-    caseLawCache[caseNum] = [];
-    render();
-    return;
-  }
-
-  executeSparql(query)
-    .then(function(rows) {
-      var seen = {};
-      var unique = [];
-      rows.forEach(function(r) {
-        // Map short SPARQL vars to display names
-        var obj = {
-          courtCelex: r.c || r.courtCelex,
-          courtTitle: r.t || r.courtTitle,
-          courtDate: r.d || r.courtDate
-        };
-        var key = obj.courtCelex || obj.courtTitle;
-        if (!seen[key]) { seen[key] = true; unique.push(obj); }
+    var words = companies[0].split(/[\s,\/\(\)]+/).filter(function(w) { return w.length > 2; });
+    if (words.length > 0) {
+      links.push({
+        label: "Search '" + words[0] + " v Commission'",
+        url: "https://infocuria.curia.europa.eu/tabs/affair?lang=en&searchTerm=%22" + encodeURIComponent(words[0]) + "%22+Commission",
+        primary: false
       });
-      delete caseLoadingSet[caseNum];
-      caseLawCache[caseNum] = unique;
-      if (workingEndpoint >= 0) {
-        console.log("SPARQL via " + SPARQL_ENDPOINTS[workingEndpoint].name + " \u2192 " + unique.length + " court cases");
-      }
-      render();
-    })
-    .catch(function(err) {
-      delete caseLoadingSet[caseNum];
-      caseLawCache[caseNum] = { error: err.message };
-      render();
+    }
+  }
+
+  if (cleanNum) {
+    links.push({
+      label: "Search EUR-Lex",
+      url: "https://eur-lex.europa.eu/search.html?scope=EURLEX&text=%22" + encodeURIComponent(cleanNum) + "%22&type=quick",
+      primary: false
     });
+  }
+
+  return links;
 }
 
-// ——— Filter & Search ———
 function doFilter() {
   var q = $("searchInput").value.trim().toLowerCase();
   var type = $("typeFilter").value;
   currentPage = 0;
   expandedCase = null;
-
   document.querySelectorAll(".pill").forEach(function(p) {
     p.classList.toggle("active", q && p.textContent.toLowerCase() === q);
   });
-
   filtered = allCases.filter(function(c) {
     if (type && c.ct !== type) return false;
     if (!q) return true;
@@ -335,14 +197,12 @@ function doFilter() {
   render();
 }
 
-// ——— Render ———
 function render() {
   $("statusBar").style.display = filtered.length > 0 ? "flex" : "none";
-  $("statusBar").innerHTML = '<span><strong>' + filtered.length + '</strong> cases</span>'
-    + '<span style="color:#666;font-style:italic;">Click a row \u2192 find linked ECJ/GC cases via CELLAR SPARQL</span>';
+  $("statusBar").innerHTML = '<span><strong>' + filtered.length + '</strong> cases</span><span style="color:#666;font-style:italic;">Click a row to find linked court cases on InfoCuria</span>';
 
   if (filtered.length === 0 && allCases.length > 0) {
-    $("results").innerHTML = '<div class="empty"><div class="empty-icon">&#128269;</div><h2>No matching cases</h2><p>Try a different search term or clear the type filter.</p></div>';
+    $("results").innerHTML = '<div class="empty"><h2>No matching cases</h2></div>';
     return;
   }
 
@@ -352,110 +212,61 @@ function render() {
 
   page.forEach(function(c) {
     var isExp = expandedCase === c.n;
-    var cases = caseLawCache[c.n];
-    var isLoading = !!caseLoadingSet[c.n];
-    var caseArr = Array.isArray(cases) ? cases : [];
-    var hasErr = cases && cases.error;
-
     html += '<div class="decision ' + (isExp ? "expanded" : "") + '">';
     html += '<div class="decision-row" onclick="toggleExpand(\'' + esc(c.n) + '\')">';
     html += '<div class="expand-arrow">&#9654;</div>';
     html += '<div class="case-num">' + h(c.n) + '</div>';
-    html += '<div class="decision-info">';
-    html += '<div class="decision-title">' + h(c.t) + '</div>';
+    html += '<div class="decision-info"><div class="decision-title">' + h(c.t) + '</div>';
     html += '<div class="decision-meta">';
     if (c.d) html += '<span>' + fmtDate(c.d) + '</span>';
     html += '<span class="tag ' + (c.ct === "Cartel" ? "tag-cartel" : "tag-antitrust") + '">' + h(c.ct) + '</span>';
     if (c.lb) html += '<span class="tag tag-lb">' + h(c.lb) + '</span>';
-    if (c.c && c.c.length > 0) html += '<span>' + h(c.c.slice(0, 3).join(", ")) + (c.c.length > 3 ? "\u2026" : "") + '</span>';
+    if (c.c && c.c.length) html += '<span>' + h(c.c.slice(0, 3).join(", ")) + (c.c.length > 3 ? "..." : "") + '</span>';
     html += '<a class="comp-link" href="https://competition-cases.ec.europa.eu/cases/' + encodeURIComponent(c.n) + '" target="_blank" onclick="event.stopPropagation()">DG COMP &#8599;</a>';
-    if (caseArr.length > 0) html += '<span style="color:#2e7d32;font-weight:600;">' + caseArr.length + ' court case' + (caseArr.length !== 1 ? 's' : '') + '</span>';
     html += '</div></div></div>';
 
     if (isExp) {
+      var links = buildInfoCuriaLinks(c.n, c.t || "", c.c || []);
       html += '<div class="case-law-panel">';
-      html += '<div class="panel-header"><span>&#9878;</span> Linked ECJ / General Court Cases</div>';
-      if (isLoading) {
-        html += '<div class="case-loading"><div class="mini-spinner"></div>Querying EU CELLAR for court judgments&hellip;</div>';
-      } else if (hasErr) {
-        html += '<div class="error-box">' + h(cases.error) + '</div>';
-      } else if (caseArr.length === 0) {
-        html += '<div class="no-cases">No linked court cases found. The decision may not have been challenged, or court case titles may not contain matching identifiers.</div>';
-      } else {
-        caseArr.forEach(function(cc) {
-          html += '<div class="court-case">';
-          html += '<div class="court-title">' + h(cc.courtTitle || cc.courtCelex || "Court case") + '</div>';
-          html += '<div class="court-meta">';
-          if (cc.courtCelex) html += '<span class="court-celex">' + h(cc.courtCelex) + '</span>';
-          if (cc.courtDate) html += '<span>' + fmtDate(cc.courtDate) + '</span>';
-          if (cc.courtType && cc.courtType !== "Other") html += '<span class="court-type">' + h(cc.courtType) + '</span>';
-          if (cc.courtCelex) html += '<a class="eurlex-link" href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:' + encodeURIComponent(cc.courtCelex) + '" target="_blank">EUR-Lex &#8599;</a>';
-          html += '</div></div>';
-        });
-      }
+      html += '<div class="panel-header"><span>&#9878;</span> Find ECJ / General Court Cases</div>';
+      html += '<div class="court-links">';
+      links.forEach(function(lk) {
+        html += '<a class="court-link-btn ' + (lk.primary ? "" : "secondary") + '" href="' + lk.url + '" target="_blank" onclick="event.stopPropagation()">' + h(lk.label) + ' &#8599;</a>';
+      });
+      html += '</div>';
+      html += '<div class="search-tips"><strong>Tip:</strong> The primary search uses the DG COMP case number (<strong>' + h(c.n.replace(/^AT\./, "")) + '</strong>) on InfoCuria, which searches the full text of ECJ and General Court judgments. Court decisions reviewing Commission decisions typically reference this number.</div>';
       html += '</div>';
     }
     html += '</div>';
   });
 
-  // Pagination
-  var totalPages = Math.ceil(filtered.length / PAGE_SIZE);
-  if (totalPages > 1) {
+  var tp = Math.ceil(filtered.length / PAGE_SIZE);
+  if (tp > 1) {
     html += '<div class="pagination">';
-    html += '<button class="page-btn" onclick="goPage(' + (currentPage - 1) + ')" ' + (currentPage === 0 ? "disabled" : "") + '>&larr; Prev</button>';
-    var s = Math.max(0, currentPage - 4);
-    var e = Math.min(totalPages, s + 9);
-    for (var i = s; i < e; i++) {
+    html += '<button class="page-btn" onclick="goPage(' + (currentPage - 1) + ')" ' + (currentPage === 0 ? "disabled" : "") + '>Prev</button>';
+    for (var i = Math.max(0, currentPage - 4); i < Math.min(tp, currentPage + 5); i++)
       html += '<button class="page-btn ' + (i === currentPage ? "active" : "") + '" onclick="goPage(' + i + ')">' + (i + 1) + '</button>';
-    }
-    if (e < totalPages) html += '<span style="color:#aaa;font-size:11px;">&hellip; ' + totalPages + '</span>';
-    html += '<button class="page-btn" onclick="goPage(' + (currentPage + 1) + ')" ' + (currentPage >= totalPages - 1 ? "disabled" : "") + '>Next &rarr;</button>';
+    html += '<button class="page-btn" onclick="goPage(' + (currentPage + 1) + ')" ' + (currentPage >= tp - 1 ? "disabled" : "") + '>Next</button>';
     html += '</div>';
   }
-
   $("results").innerHTML = html;
 }
 
 function goPage(p) {
   var tp = Math.ceil(filtered.length / PAGE_SIZE);
   if (p < 0 || p >= tp) return;
-  currentPage = p;
-  expandedCase = null;
-  render();
-  window.scrollTo(0, 0);
+  currentPage = p; expandedCase = null; render(); window.scrollTo(0, 0);
 }
 
-function toggleExpand(caseNum) {
-  if (expandedCase === caseNum) {
-    expandedCase = null;
-  } else {
-    expandedCase = caseNum;
-    if (!caseLawCache[caseNum]) {
-      fetchCourtCases(caseNum);
-    }
-  }
+function toggleExpand(cn) {
+  expandedCase = (expandedCase === cn) ? null : cn;
   render();
 }
 
-// ——— Utilities ———
-function h(s) { return s ? String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") : ""; }
+function h(s) { return s ? String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;") : ""; }
 function esc(s) { return s ? s.replace(/'/g, "\\'") : ""; }
-function fmtDate(d) {
-  try { return new Date(d).toLocaleDateString("en-GB", { year: "numeric", month: "short", day: "numeric" }); }
-  catch(e) { return d; }
-}
-function showDebug(type, msg) {
-  var d = $("debugBar");
-  d.textContent = (type === "success" ? "\u2713 " : type === "error" ? "\u2717 " : "") + msg;
-  if (type === "success") {
-    d.style.background = "#e8f5e9"; d.style.color = "#1b5e20"; d.style.borderColor = "#c8e6c9";
-    setTimeout(function() { d.style.display = "none"; }, 4000);
-  } else if (type === "error") {
-    d.style.background = "#fce4e4"; d.style.color = "#8b1a1a"; d.style.borderColor = "#f5c6cb";
-  }
-}
+function fmtDate(d) { try { return new Date(d).toLocaleDateString("en-GB", {year:"numeric",month:"short",day:"numeric"}); } catch(e) { return d; } }
 
-// ——— Start ———
 loadCaseData();
 </script>
 </body>
