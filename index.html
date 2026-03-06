@@ -120,21 +120,6 @@ function cellarUrl(query) {
 
 var SPARQL_ENDPOINTS = [
   {
-    name: "CELLAR Direct",
-    makeUrl: function(query) { return cellarUrl(query); },
-    parseResponse: function(text) { return JSON.parse(text); }
-  },
-  {
-    name: "Sparnatural Proxy",
-    makeUrl: function(query) {
-      return "https://proxy.sparnatural.eu/sparql-proxy/sparql"
-        + "?endpoint=" + encodeURIComponent(CELLAR_BASE)
-        + "&query=" + encodeURIComponent(query)
-        + "&format=" + encodeURIComponent("application/sparql-results+json");
-    },
-    parseResponse: function(text) { return JSON.parse(text); }
-  },
-  {
     name: "AllOrigins Proxy",
     makeUrl: function(query) {
       return "https://api.allorigins.win/raw?url=" + encodeURIComponent(cellarUrl(query));
@@ -142,17 +127,8 @@ var SPARQL_ENDPOINTS = [
     parseResponse: function(text) { return JSON.parse(text); }
   },
   {
-    name: "Corsfix Proxy",
-    makeUrl: function(query) {
-      return "https://proxy.corsfix.com/?" + encodeURIComponent(cellarUrl(query));
-    },
-    parseResponse: function(text) { return JSON.parse(text); }
-  },
-  {
-    name: "corsproxy.io",
-    makeUrl: function(query) {
-      return "https://corsproxy.io/?url=" + encodeURIComponent(cellarUrl(query));
-    },
+    name: "CELLAR Direct",
+    makeUrl: function(query) { return cellarUrl(query); },
     parseResponse: function(text) { return JSON.parse(text); }
   }
 ];
