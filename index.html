@@ -3,692 +3,368 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DG COMP | Competition Decisions & Court Cases</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>EU Competition Decisions & Court Cases | digital-competition.com</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --ink: #0d0f1a;
-  --paper: #faf9f5;
-  --cream: #f3f1ea;
-  --gold: #b8860b;
-  --gold-light: #daa52033;
-  --eu-blue: #003399;
-  --eu-blue-light: #eef1f9;
-  --cartel-red: #9b2226;
-  --antitrust-blue: #14558a;
-  --border: #e2dfd6;
-  --muted: #8a8578;
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'Outfit', -apple-system, sans-serif;
-}
+:root{--ink:#0d0f1a;--paper:#faf9f5;--cream:#f3f1ea;--gold:#b8860b;--gold-l:#daa52022;--eu:#003399;--eu-l:#eef1f9;--red:#9b2226;--blue:#14558a;--green:#2e7d32;--border:#e2dfd6;--muted:#8a8578;--ff-d:'Cormorant Garamond',Georgia,serif;--ff-b:'Outfit',-apple-system,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--ff-b);background:var(--paper);color:var(--ink);font-size:14px;line-height:1.6}
+.hero{background:var(--ink);color:var(--paper);padding:44px 24px 36px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(255,255,255,.015) 80px,rgba(255,255,255,.015) 81px);pointer-events:none}
+.hero-badge{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--gold);border:1px solid rgba(184,134,11,.4);padding:4px 14px;border-radius:2px;display:inline-block;margin-bottom:14px}
+.hero h1{font-family:var(--ff-d);font-size:clamp(26px,4vw,40px);font-weight:500;letter-spacing:-.5px;line-height:1.15;margin-bottom:8px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:13px;color:rgba(250,249,245,.45);font-weight:300;max-width:520px;margin:0 auto}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
 
-* { box-sizing: border-box; margin: 0; padding: 0 }
-body { font-family: var(--font-body); background: var(--paper); color: var(--ink); font-size: 14px; line-height: 1.6 }
+/* Stats */
+.stats{display:flex;justify-content:center;gap:0;margin:-22px auto 24px;position:relative;z-index:2;max-width:860px;background:#fff;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.06);overflow:hidden;border:1px solid var(--border)}
+.st{flex:1;text-align:center;padding:16px 8px;border-right:1px solid var(--border);cursor:default;transition:background .15s}
+.st:last-child{border-right:none}.st:hover{background:var(--eu-l)}
+.st-v{font-family:var(--ff-d);font-size:28px;font-weight:700;color:var(--eu);line-height:1}
+.st-l{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-top:3px;font-weight:500}
 
-/* ——— Hero ——— */
-.hero {
-  background: var(--ink);
-  color: var(--paper);
-  padding: 40px 24px 32px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.02) 60px, rgba(255,255,255,0.02) 61px);
-  pointer-events: none;
-}
-.hero-label {
-  font-family: var(--font-body);
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--gold);
-  margin-bottom: 12px;
-  display: inline-block;
-  border: 1px solid var(--gold);
-  padding: 4px 14px;
-  border-radius: 2px;
-}
-.hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 42px);
-  font-weight: 500;
-  letter-spacing: -0.5px;
-  line-height: 1.15;
-  margin-bottom: 8px;
-}
-.hero h1 em { font-style: italic; color: var(--gold); }
-.hero-sub {
-  font-size: 13px;
-  color: rgba(250,249,245,0.5);
-  font-weight: 300;
-  max-width: 500px;
-  margin: 0 auto;
-}
+/* Charts */
+.charts-row{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:768px){.charts-row{grid-template-columns:1fr}}
+.chart-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.02)}
+.chart-title{font-family:var(--ff-d);font-size:17px;font-weight:600;margin-bottom:12px}
+.timeline{display:flex;align-items:flex-end;gap:2px;height:90px}
+.tbar-g{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0}
+.tbars{display:flex;align-items:flex-end;gap:1px;width:100%}
+.tbar{flex:1;border-radius:2px 2px 0 0;min-height:1px;transition:opacity .15s;cursor:pointer}
+.tbar:hover{opacity:.7}
+.tbar.at{background:var(--blue)}.tbar.ca{background:var(--red)}
+.tyr{font-size:8px;color:var(--muted);transform:rotate(-50deg);white-space:nowrap;margin-top:3px}
+.legend{display:flex;gap:14px;margin-top:10px;font-size:11px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:4px}
+.ldot{width:9px;height:9px;border-radius:2px;display:inline-block}
 
-/* ——— Container ——— */
-.container { max-width: 1100px; margin: 0 auto; padding: 0 20px }
+/* Practice donut (simplified as horizontal bars) */
+.practice-bars{display:flex;flex-direction:column;gap:6px}
+.pbar-row{display:flex;align-items:center;gap:8px;font-size:11px}
+.pbar-label{min-width:120px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pbar-track{flex:1;height:16px;background:var(--cream);border-radius:3px;overflow:hidden}
+.pbar-fill{height:100%;border-radius:3px;transition:width .6s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:4px;font-size:9px;color:#fff;font-weight:600}
+.pbar-fill.c1{background:var(--blue)}.pbar-fill.c2{background:var(--red)}.pbar-fill.c3{background:var(--gold)}.pbar-fill.c4{background:#6a1b9a}.pbar-fill.c5{background:var(--green)}.pbar-fill.c6{background:#e65100}
 
-/* ——— Stats strip ——— */
-.stats-strip {
-  display: flex;
-  justify-content: center;
-  gap: 0;
-  margin: -20px auto 24px;
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-.stat-item {
-  flex: 1;
-  text-align: center;
-  padding: 18px 12px;
-  border-right: 1px solid var(--border);
-  transition: background 0.2s;
-  cursor: default;
-}
-.stat-item:last-child { border-right: none }
-.stat-item:hover { background: var(--eu-blue-light) }
-.stat-val {
-  font-family: var(--font-display);
-  font-size: 30px;
-  font-weight: 700;
-  color: var(--eu-blue);
-  line-height: 1;
-}
-.stat-label {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--muted);
-  margin-top: 4px;
-  font-weight: 500;
-}
+/* Search */
+.search-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.02)}
+.search-row{display:flex;gap:8px}
+.search-row input{flex:1;padding:11px 16px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--ff-b);outline:none;background:var(--paper);transition:border .2s}
+.search-row input:focus{border-color:var(--eu)}
+.search-row select{padding:11px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:var(--ff-b);background:var(--paper);cursor:pointer}
+.search-row button{padding:11px 22px;background:var(--ink);color:var(--paper);border:none;border-radius:8px;font-weight:600;cursor:pointer;font-family:var(--ff-b);font-size:14px;transition:background .15s}
+.search-row button:hover{background:var(--eu)}
+.pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.pill{padding:4px 12px;border-radius:20px;border:1px solid var(--border);background:var(--paper);font-size:11px;cursor:pointer;transition:all .12s;font-family:var(--ff-b)}
+.pill:hover{border-color:var(--eu);background:var(--eu-l)}
+.pill.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 
-/* ——— Timeline chart ——— */
-.timeline-section {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-  margin-bottom: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-}
-.timeline-title {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 14px;
-}
-.chart-container { display: flex; align-items: flex-end; gap: 3px; height: 100px; padding-top: 10px }
-.chart-bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0 }
-.chart-bars { display: flex; align-items: flex-end; gap: 1px; width: 100% }
-.chart-bar {
-  flex: 1;
-  border-radius: 2px 2px 0 0;
-  min-height: 2px;
-  transition: opacity 0.2s;
-  cursor: pointer;
-  position: relative;
-}
-.chart-bar:hover { opacity: 0.75 }
-.chart-bar.antitrust { background: var(--antitrust-blue) }
-.chart-bar.cartel { background: var(--cartel-red) }
-.chart-year {
-  font-size: 9px;
-  color: var(--muted);
-  transform: rotate(-45deg);
-  white-space: nowrap;
-  margin-top: 4px;
-}
-.chart-legend {
-  display: flex;
-  gap: 16px;
-  margin-top: 12px;
-  font-size: 11px;
-  color: var(--muted);
-}
-.chart-legend span { display: flex; align-items: center; gap: 4px }
-.legend-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block }
+/* Filter by practice */
+.practice-filter{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.pf-btn{padding:3px 10px;border-radius:4px;border:1px solid var(--border);background:#fff;font-size:10px;cursor:pointer;font-family:var(--ff-b);transition:all .12s;font-weight:500;text-transform:uppercase;letter-spacing:.3px}
+.pf-btn:hover{border-color:var(--eu);background:var(--eu-l)}
+.pf-btn.active{background:var(--eu);color:#fff;border-color:var(--eu)}
 
-/* ——— Search ——— */
-.search-section {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-}
-.search-row { display: flex; gap: 8px }
-.search-row input {
-  flex: 1;
-  padding: 12px 16px;
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  font-size: 14px;
-  font-family: var(--font-body);
-  outline: none;
-  background: var(--paper);
-  transition: border 0.2s;
-}
-.search-row input:focus { border-color: var(--eu-blue) }
-.search-row select {
-  padding: 12px;
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  font-size: 13px;
-  font-family: var(--font-body);
-  background: var(--paper);
-  cursor: pointer;
-}
-.search-row button {
-  padding: 12px 24px;
-  background: var(--ink);
-  color: var(--paper);
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: var(--font-body);
-  font-size: 14px;
-  transition: background 0.2s;
-}
-.search-row button:hover { background: var(--eu-blue) }
-.pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px }
-.pill {
-  padding: 4px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  background: var(--paper);
-  font-size: 12px;
-  cursor: pointer;
-  transition: all 0.15s;
-  font-family: var(--font-body);
-}
-.pill:hover { border-color: var(--eu-blue); background: var(--eu-blue-light) }
-.pill.active { background: var(--ink); color: var(--paper); border-color: var(--ink) }
+.results-hdr{display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:12px;color:var(--muted)}
+.results-hdr strong{color:var(--ink)}
 
-/* ——— Results ——— */
-.results-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  font-size: 13px;
-  color: var(--muted);
-}
-.results-header strong { color: var(--ink) }
+/* Decision card */
+.dec{background:#fff;border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;transition:all .2s ease}
+.dec:hover{box-shadow:0 2px 14px rgba(0,0,0,.04);transform:translateY(-1px)}
+.dec.exp{border-color:var(--eu);box-shadow:0 6px 30px rgba(0,51,153,.08);transform:none}
+.dec-row{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;cursor:pointer;transition:background .1s}
+.dec-row:hover{background:rgba(0,0,0,.006)}
+.dec-arr{width:20px;height:20px;border-radius:50%;background:var(--eu-l);display:flex;align-items:center;justify-content:center;font-size:8px;color:var(--eu);flex-shrink:0;margin-top:3px;transition:all .2s}
+.exp .dec-arr{background:var(--eu);color:#fff;transform:rotate(90deg)}
+.dec-num{font-weight:700;font-size:12px;color:var(--eu);white-space:nowrap;min-width:88px;margin-top:2px}
+.dec-info{flex:1;min-width:0}
+.dec-title{font-family:var(--ff-d);font-weight:600;font-size:16px;margin-bottom:3px;color:var(--ink);line-height:1.3}
+.dec-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px;color:var(--muted)}
+.tag{padding:2px 8px;border-radius:3px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+.t-ca{background:#f8e8e8;color:var(--red)}.t-at{background:#e6eef6;color:var(--blue)}
+.t-lb{background:var(--gold-l);color:#7a6608}.t-pr{background:#f0e6f6;color:#6a1b9a}
+.ext{color:var(--eu);text-decoration:none;font-weight:600;font-size:10px;transition:color .12s}
+.ext:hover{color:var(--gold)}
+.cc-count{color:var(--green);font-weight:600;font-size:10px;background:#e8f5e9;padding:2px 7px;border-radius:3px}
 
-.decision {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin-bottom: 8px;
-  overflow: hidden;
-  transition: all 0.25s ease;
-}
-.decision:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.04); transform: translateY(-1px) }
-.decision.expanded {
-  border-color: var(--eu-blue);
-  box-shadow: 0 6px 30px rgba(0,51,153,0.08);
-  transform: none;
-}
-.decision-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 16px 20px;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-.decision-row:hover { background: rgba(0,0,0,0.008) }
-.expand-icon {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--eu-blue-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 9px;
-  color: var(--eu-blue);
-  flex-shrink: 0;
-  margin-top: 2px;
-  transition: all 0.2s;
-}
-.expanded .expand-icon { background: var(--eu-blue); color: #fff; transform: rotate(90deg) }
-.case-num {
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--eu-blue);
-  white-space: nowrap;
-  min-width: 95px;
-  margin-top: 1px;
-  font-family: var(--font-body);
-}
-.decision-info { flex: 1; min-width: 0 }
-.decision-title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 17px;
-  margin-bottom: 4px;
-  color: var(--ink);
-  line-height: 1.3;
-}
-.decision-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 12px; color: var(--muted) }
-.tag {
-  padding: 2px 10px;
-  border-radius: 3px;
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.tag-cartel { background: #f8e8e8; color: var(--cartel-red) }
-.tag-antitrust { background: #e6eef6; color: var(--antitrust-blue) }
-.tag-lb { background: var(--gold-light); color: #7a6608; font-size: 10px }
-.ext-link {
-  color: var(--eu-blue);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 11px;
-  transition: color 0.15s;
-}
-.ext-link:hover { color: var(--gold) }
-.court-count {
-  color: #2e7d32;
-  font-weight: 600;
-  font-size: 11px;
-  background: #e8f5e9;
-  padding: 2px 8px;
-  border-radius: 3px;
-}
+/* Panel */
+.panel{padding:0 18px 18px;animation:slideIn .25s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+@media(max-width:700px){.panel-grid{grid-template-columns:1fr}}
+.p-card{background:var(--paper);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.p-card-t{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:600;margin-bottom:5px}
+.p-card-b{font-size:13px;color:var(--ink);line-height:1.5}
+.company{display:inline-block;background:#fff;border:1px solid var(--border);padding:2px 7px;border-radius:3px;margin:2px 2px 2px 0;font-size:11px}
 
-/* ——— Expanded panel ——— */
-.panel {
-  padding: 0 20px 20px;
-  animation: slideDown 0.2s ease;
-}
-@keyframes slideDown { from { opacity: 0; transform: translateY(-8px) } to { opacity: 1; transform: translateY(0) } }
+/* Summary card (legal reasoning) */
+.summary-card{background:linear-gradient(135deg,#f8f7f2,#fff);border:1px solid var(--gold);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 18px;margin-bottom:14px}
+.summary-card h4{font-family:var(--ff-d);font-size:15px;font-weight:600;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.summary-section{margin-bottom:8px}
+.summary-section strong{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);display:block;margin-bottom:2px}
+.summary-section p{font-size:13px;line-height:1.55;color:var(--ink)}
+.summary-fine{display:inline-block;background:var(--red);color:#fff;padding:2px 10px;border-radius:3px;font-weight:700;font-size:12px;margin-top:4px}
 
-.panel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px }
-@media (max-width: 700px) { .panel-grid { grid-template-columns: 1fr } }
-.panel-card {
-  background: var(--paper);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 14px 16px;
-}
-.panel-card-title {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--muted);
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-.panel-card-body { font-size: 13px; color: var(--ink); line-height: 1.5 }
-.panel-card-body .company { display: inline-block; background: #fff; border: 1px solid var(--border); padding: 2px 8px; border-radius: 4px; margin: 2px 2px 2px 0; font-size: 12px }
+.sec-title{font-family:var(--ff-d);font-size:15px;font-weight:600;color:var(--ink);margin:14px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--border)}
 
-.section-title {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--ink);
-  margin: 16px 0 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--border);
-}
+/* Court case results */
+.cc{padding:10px 12px;background:#fff;border:1px solid var(--border);border-radius:7px;margin-bottom:5px;transition:border-color .12s}
+.cc:hover{border-color:var(--eu)}
+.cc-title{font-weight:500;font-size:12px;color:var(--ink);margin-bottom:2px;line-height:1.4}
+.cc-meta{display:flex;flex-wrap:wrap;gap:6px;font-size:10px;color:var(--muted);align-items:center}
+.celex{font-weight:700;color:var(--eu)}
+.loading{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;padding:8px 0}
+.mspin{width:14px;height:14px;border:2px solid var(--border);border-top:2px solid var(--eu);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.no-res{color:var(--muted);font-size:12px;padding:6px 0;font-style:italic}
 
-.court-case {
-  padding: 12px 14px;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  margin-bottom: 6px;
-  transition: border-color 0.15s;
-}
-.court-case:hover { border-color: var(--eu-blue) }
-.court-case-title { font-weight: 500; font-size: 13px; color: var(--ink); margin-bottom: 3px; line-height: 1.4 }
-.court-case-meta { display: flex; flex-wrap: wrap; gap: 8px; font-size: 11px; color: var(--muted); align-items: center }
-.celex { font-weight: 700; color: var(--eu-blue); font-family: var(--font-body) }
-.case-loading { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13px; padding: 10px 0 }
-.mini-spinner { width: 16px; height: 16px; border: 2px solid var(--border); border-top: 2px solid var(--eu-blue); border-radius: 50%; animation: spin 0.7s linear infinite }
-@keyframes spin { to { transform: rotate(360deg) } }
-.no-results { color: var(--muted); font-size: 13px; padding: 8px 0; font-style: italic }
+.actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.abtn{display:inline-flex;align-items:center;gap:4px;padding:7px 14px;border-radius:6px;text-decoration:none;font-size:11px;font-weight:600;font-family:var(--ff-b);transition:all .12s}
+.abtn.dk{background:var(--ink);color:var(--paper)}.abtn.dk:hover{background:var(--eu)}
+.abtn.ol{background:#fff;color:var(--eu);border:1.5px solid var(--border)}.abtn.ol:hover{border-color:var(--eu);background:var(--eu-l)}
 
-.action-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px }
-.action-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 8px 16px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 600;
-  font-family: var(--font-body);
-  transition: all 0.15s;
-}
-.action-btn.dark { background: var(--ink); color: var(--paper) }
-.action-btn.dark:hover { background: var(--eu-blue) }
-.action-btn.outline { background: #fff; color: var(--eu-blue); border: 1.5px solid var(--border) }
-.action-btn.outline:hover { border-color: var(--eu-blue); background: var(--eu-blue-light) }
-
-/* ——— Pagination ——— */
-.pagination { display: flex; justify-content: center; gap: 4px; margin: 24px 0; flex-wrap: wrap }
-.pg-btn {
-  padding: 8px 14px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: #fff;
-  cursor: pointer;
-  font-size: 12px;
-  font-family: var(--font-body);
-  transition: all 0.15s;
-}
-.pg-btn:hover { border-color: var(--eu-blue); background: var(--eu-blue-light) }
-.pg-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink) }
-.pg-btn:disabled { opacity: 0.25; cursor: default }
-
-.loading-box { text-align: center; padding: 50px }
-.spinner { width: 28px; height: 28px; border: 3px solid var(--border); border-top: 3px solid var(--eu-blue); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 14px }
-
-.footer {
-  text-align: center;
-  padding: 24px 0;
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 12px;
-  border-top: 1px solid var(--border);
-}
-.footer a { color: var(--eu-blue); text-decoration: none }
-.footer a:hover { text-decoration: underline }
-.footer-sep { margin: 0 6px; color: var(--border) }
-
-#debugBar { display: none }
+.pagination{display:flex;justify-content:center;gap:4px;margin:20px 0;flex-wrap:wrap}
+.pg{padding:7px 13px;border:1px solid var(--border);border-radius:6px;background:#fff;cursor:pointer;font-size:11px;font-family:var(--ff-b);transition:all .12s}
+.pg:hover{border-color:var(--eu);background:var(--eu-l)}
+.pg.act{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.pg:disabled{opacity:.2;cursor:default}
+.spinner-box{text-align:center;padding:40px}
+.spinner{width:26px;height:26px;border:3px solid var(--border);border-top:3px solid var(--eu);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
+.empty{text-align:center;padding:40px;color:var(--muted)}
+.footer{text-align:center;padding:20px 0;font-size:10px;color:var(--muted);border-top:1px solid var(--border);margin-top:16px}
+.footer a{color:var(--eu);text-decoration:none}.footer a:hover{text-decoration:underline}
+.fsep{margin:0 5px;color:var(--border)}
+#debugBar{display:none;padding:10px;background:#fce4e4;color:#8b1a1a;border-radius:8px;margin-bottom:12px;font-size:12px}
 </style>
 </head>
 <body>
-
 <div class="hero">
-  <div class="hero-label">Research Tool</div>
-  <h1>EU Competition Decisions<br>&amp; <em>Court Case Law</em></h1>
-  <div class="hero-sub">747 DG COMP antitrust &amp; cartel decisions linked to ECJ and General Court judgments</div>
+  <div class="hero-badge">Legal Research Tool</div>
+  <h1>EU Competition Decisions<br>& <em>Court Case Law</em></h1>
+  <div class="hero-sub">Comprehensive database linking DG COMP antitrust & cartel decisions to ECJ and General Court proceedings</div>
 </div>
-
-<div class="container">
-  <div class="stats-strip" id="statsStrip"></div>
-
-  <div class="timeline-section">
-    <div class="timeline-title">Decisions Over Time</div>
-    <div class="chart-container" id="chart"></div>
-    <div class="chart-legend">
-      <span><span class="legend-dot" style="background:var(--antitrust-blue)"></span> Antitrust</span>
-      <span><span class="legend-dot" style="background:var(--cartel-red)"></span> Cartel</span>
-    </div>
-  </div>
-
-  <div class="search-section">
-    <div class="search-row">
-      <input type="text" id="searchInput" placeholder="Search by case number, company, keyword...">
-      <select id="typeFilter"><option value="">All types</option><option value="Antitrust">Antitrust</option><option value="Cartel">Cartel</option></select>
-      <button id="btnSearch">Search</button>
-    </div>
-    <div class="pills" id="quickFilters"></div>
-  </div>
-
-  <div id="debugBar"></div>
-  <div id="loadingBox" class="loading-box"><div class="spinner"></div><div style="color:var(--muted)">Loading decisions...</div></div>
-  <div id="resultsHeader" class="results-header" style="display:none"></div>
-  <div id="results"></div>
+<div class="wrap">
+<div class="stats" id="stats"></div>
+<div class="charts-row">
+  <div class="chart-box"><div class="chart-title">Enforcement Timeline</div><div class="timeline" id="timeline"></div><div class="legend"><span><span class="ldot" style="background:var(--blue)"></span>Antitrust</span><span><span class="ldot" style="background:var(--red)"></span>Cartel</span></div></div>
+  <div class="chart-box"><div class="chart-title">By Practice Type</div><div class="practice-bars" id="practiceBars"></div></div>
 </div>
-
+<div class="search-box">
+  <div class="search-row">
+    <input type="text" id="searchInput" placeholder="Search by case number, company, keyword...">
+    <select id="typeFilter"><option value="">All types</option><option value="Antitrust">Antitrust</option><option value="Cartel">Cartel</option></select>
+    <button id="btnSearch">Search</button>
+  </div>
+  <div class="pills" id="pills"></div>
+  <div class="practice-filter" id="practiceFilter"></div>
+</div>
+<div id="debugBar"></div>
+<div id="loadingBox" class="spinner-box"><div class="spinner"></div><div style="color:var(--muted);font-size:13px">Loading decisions...</div></div>
+<div id="resultsHdr" class="results-hdr" style="display:none"></div>
+<div id="results"></div>
+</div>
 <div class="footer">
-  <a href="https://data.europa.eu" target="_blank">DG COMP Open Data</a>
-  <span class="footer-sep">&#183;</span>
-  <a href="https://infocuria.curia.europa.eu" target="_blank">InfoCuria (CJEU)</a>
-  <span class="footer-sep">&#183;</span>
-  <a href="https://publications.europa.eu/en/web/cellar" target="_blank">EU CELLAR</a>
-  <span class="footer-sep">&#183;</span>
+  <a href="https://data.europa.eu" target="_blank">DG COMP Open Data</a><span class="fsep">&#183;</span>
+  <a href="https://infocuria.curia.europa.eu" target="_blank">InfoCuria</a><span class="fsep">&#183;</span>
+  <a href="https://publications.europa.eu/en/web/cellar" target="_blank">EU CELLAR</a><span class="fsep">&#183;</span>
   <a href="https://www.digital-competition.com" target="_blank">digital-competition.com</a>
 </div>
-
 <script>
-var CELLAR="https://publications.europa.eu/webapi/rdf/sparql";
 var PROXY="https://api.allorigins.win/raw?url=";
+var CELLAR="https://publications.europa.eu/webapi/rdf/sparql";
 var QUICK=["Google","Apple","Microsoft","Intel","Qualcomm","Amazon","Meta","cartel","abuse","Art. 102","Art. 101"];
-var PAGE_SIZE=40, allCases=[], filtered=[], expandedCase=null, caseLawCache={}, caseLoadingSet={}, currentPage=0;
+var PCOLORS=["c1","c2","c3","c4","c5","c6","c1","c2","c3","c4"];
+var PS=40,allC=[],filt=[],expC=null,clCache={},clLoad={},page=0,activePractice="",summaries={};
 
 function $(id){return document.getElementById(id)}
 
-QUICK.forEach(function(t){
-  var p=document.createElement("button");p.className="pill";p.textContent=t;
-  p.addEventListener("click",function(){$("searchInput").value=t;doFilter()});
-  $("quickFilters").appendChild(p);
-});
+QUICK.forEach(function(t){var p=document.createElement("button");p.className="pill";p.textContent=t;p.addEventListener("click",function(){$("searchInput").value=t;doFilter()});$("pills").appendChild(p)});
 $("btnSearch").addEventListener("click",doFilter);
 $("searchInput").addEventListener("keydown",function(e){if(e.key==="Enter")doFilter()});
 $("typeFilter").addEventListener("change",doFilter);
 
-function loadCaseData(){
-  fetch("cases.json").then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()})
-  .then(function(d){
-    allCases=Array.isArray(d)?d:(d.data||[]);
-    if(!allCases.length)throw new Error("No cases");
+function loadData(){
+  Promise.all([
+    fetch("cases.json").then(function(r){return r.json()}),
+    fetch("summaries.json").then(function(r){return r.json()}).catch(function(){return{}})
+  ]).then(function(res){
+    allC=Array.isArray(res[0])?res[0]:(res[0].data||[]);
+    summaries=res[1]||{};
+    if(!allC.length)throw new Error("No cases");
     $("loadingBox").style.display="none";
-    filtered=allCases;
-    renderStats();renderChart();render();
+    filt=allC;
+    renderStats();renderTimeline();renderPractices();renderPracticeFilter();render();
   }).catch(function(e){
-    $("debugBar").style.display="block";
-    $("debugBar").textContent="Error: "+e.message;
-    $("debugBar").style.background="#fce4e4";$("debugBar").style.color="#8b1a1a";
+    $("debugBar").style.display="block";$("debugBar").textContent="Error: "+e.message;
   });
 }
 
 function renderStats(){
   var at=0,ca=0,a101=0,a102=0;
-  allCases.forEach(function(c){
-    if(c.ct==="Antitrust")at++;if(c.ct==="Cartel")ca++;
-    if(c.lb&&c.lb.indexOf("101")!==-1)a101++;
-    if(c.lb&&c.lb.indexOf("102")!==-1)a102++;
-  });
-  $("statsStrip").innerHTML=
-    '<div class="stat-item"><div class="stat-val">'+allCases.length+'</div><div class="stat-label">Decisions</div></div>'+
-    '<div class="stat-item"><div class="stat-val">'+at+'</div><div class="stat-label">Antitrust</div></div>'+
-    '<div class="stat-item"><div class="stat-val">'+ca+'</div><div class="stat-label">Cartel</div></div>'+
-    '<div class="stat-item"><div class="stat-val">'+a102+'</div><div class="stat-label">Art. 102</div></div>'+
-    '<div class="stat-item"><div class="stat-val">'+a101+'</div><div class="stat-label">Art. 101</div></div>';
+  allC.forEach(function(c){if(c.ct==="Antitrust")at++;if(c.ct==="Cartel")ca++;if(c.lb&&c.lb.indexOf("101")!==-1)a101++;if(c.lb&&c.lb.indexOf("102")!==-1)a102++});
+  $("stats").innerHTML='<div class="st"><div class="st-v">'+allC.length+'</div><div class="st-l">Decisions</div></div><div class="st"><div class="st-v">'+at+'</div><div class="st-l">Antitrust</div></div><div class="st"><div class="st-v">'+ca+'</div><div class="st-l">Cartel</div></div><div class="st"><div class="st-v">'+a102+'</div><div class="st-l">Art. 102</div></div><div class="st"><div class="st-v">'+a101+'</div><div class="st-l">Art. 101</div></div>';
 }
 
-function renderChart(){
-  var years={};
-  allCases.forEach(function(c){if(c.d){var y=c.d.substring(0,4);if(!years[y])years[y]={a:0,c:0};if(c.ct==="Cartel")years[y].c++;else years[y].a++;}});
-  var ks=Object.keys(years).sort();
-  // Show last 20 years
-  ks=ks.slice(Math.max(0,ks.length-20));
-  var max=0;ks.forEach(function(y){var tot=years[y].a+years[y].c;if(tot>max)max=tot;});
-  if(!max)max=1;
-  var html="";
-  ks.forEach(function(y){
-    var ah=Math.round((years[y].a/max)*85);
-    var ch=Math.round((years[y].c/max)*85);
-    html+='<div class="chart-bar-group">';
-    html+='<div class="chart-bars">';
-    html+='<div class="chart-bar antitrust" style="height:'+ah+'px" title="'+years[y].a+' antitrust ('+y+')"></div>';
-    html+='<div class="chart-bar cartel" style="height:'+ch+'px" title="'+years[y].c+' cartel ('+y+')"></div>';
-    html+='</div>';
-    html+='<div class="chart-year">'+y.slice(2)+'</div>';
-    html+='</div>';
-  });
-  $("chart").innerHTML=html;
+function renderTimeline(){
+  var yrs={};allC.forEach(function(c){if(c.d){var y=c.d.substring(0,4);if(!yrs[y])yrs[y]={a:0,c:0};if(c.ct==="Cartel")yrs[y].c++;else yrs[y].a++}});
+  var ks=Object.keys(yrs).sort().slice(-22),mx=0;ks.forEach(function(y){var t=yrs[y].a+yrs[y].c;if(t>mx)mx=t});if(!mx)mx=1;
+  var h="";ks.forEach(function(y){var ah=Math.round(yrs[y].a/mx*80),ch=Math.round(yrs[y].c/mx*80);
+    h+='<div class="tbar-g"><div class="tbars"><div class="tbar at" style="height:'+ah+'px" title="'+yrs[y].a+' antitrust"></div><div class="tbar ca" style="height:'+ch+'px" title="'+yrs[y].c+' cartel"></div></div><div class="tyr">'+y.slice(2)+'</div></div>'});
+  $("timeline").innerHTML=h;
 }
 
-// ——— SPARQL ———
-function buildQuery(cn,companies){
+function renderPractices(){
+  var pc={};allC.forEach(function(c){var p=c.p||"Other";pc[p]=(pc[p]||0)+1});
+  var sorted=Object.entries(pc).sort(function(a,b){return b[1]-a[1]}).slice(0,7);
+  var mx=sorted[0]?sorted[0][1]:1;
+  var h="";sorted.forEach(function(e,i){var pct=Math.round(e[1]/allC.length*100);
+    h+='<div class="pbar-row"><div class="pbar-label">'+he(e[0])+'</div><div class="pbar-track"><div class="pbar-fill '+PCOLORS[i%PCOLORS.length]+'" style="width:'+Math.round(e[1]/mx*100)+'%">'+(e[1]>8?e[1]:"")+'</div></div></div>'});
+  $("practiceBars").innerHTML=h;
+}
+
+function renderPracticeFilter(){
+  var pc={};allC.forEach(function(c){var p=c.p||"Other";pc[p]=(pc[p]||0)+1});
+  var sorted=Object.entries(pc).sort(function(a,b){return b[1]-a[1]});
+  var h='<span style="font-size:10px;color:var(--muted);margin-right:4px;font-weight:600">PRACTICE:</span>';
+  h+='<button class="pf-btn'+(activePractice===""?" active":"")+'" onclick="filterPractice(\'\')">All</button>';
+  sorted.forEach(function(e){h+='<button class="pf-btn'+(activePractice===e[0]?" active":"")+'" onclick="filterPractice(\''+esc(e[0])+'\')">'+he(e[0])+' ('+e[1]+')</button>'});
+  $("practiceFilter").innerHTML=h;
+}
+
+function filterPractice(p){activePractice=p;renderPracticeFilter();doFilter()}
+
+// SPARQL
+function buildQ(cn,companies){
   var n=cn.replace(/^AT\./,"").replace(/^COMP\//,""),term="";
   if(companies&&companies.length){var w=companies[0].split(/[\s,\/\(\)]+/).filter(function(x){return x.length>3});if(w.length)term=w[0].toLowerCase().replace(/"/g,"")}
-  var f=[];
-  if(n)f.push('CONTAINS(STR(?t),"'+n+'")');
+  var f=[];if(n)f.push('CONTAINS(STR(?t),"'+n+'")');
   if(term)f.push('(CONTAINS(LCASE(STR(?t)),"'+term+'")&&CONTAINS(LCASE(STR(?t)),"commission"))');
   if(!f.length)return null;
-  return 'PREFIX cdm:<http://publications.europa.eu/ontology/cdm#> SELECT DISTINCT ?c ?t ?d WHERE{?w cdm:work_has_resource-type ?ty.FILTER(?ty IN(<http://publications.europa.eu/resource/authority/resource-type/JUDG>,<http://publications.europa.eu/resource/authority/resource-type/ORDER>,<http://publications.europa.eu/resource/authority/resource-type/OPIN_AG>))?e cdm:expression_belongs_to_work ?w.?e cdm:expression_uses_language <http://publications.europa.eu/resource/authority/language/ENG>.?e cdm:expression_title ?t.FILTER('+f.join("||")+')OPTIONAL{?w cdm:resource_legal_id_celex ?c.}OPTIONAL{?w cdm:work_date_document ?d.}}ORDER BY DESC(?d)LIMIT 30';
+  return 'PREFIX cdm:<http://publications.europa.eu/ontology/cdm#> SELECT DISTINCT ?c ?t ?d WHERE{?w cdm:work_has_resource-type ?ty.FILTER(?ty IN(<http://publications.europa.eu/resource/authority/resource-type/JUDG>,<http://publications.europa.eu/resource/authority/resource-type/ORDER>,<http://publications.europa.eu/resource/authority/resource-type/OPIN_AG>))?e cdm:expression_belongs_to_work ?w.?e cdm:expression_uses_language <http://publications.europa.eu/resource/authority/language/ENG>.?e cdm:expression_title ?t.FILTER('+f.join("||")+')OPTIONAL{?w cdm:resource_legal_id_celex ?c.}OPTIONAL{?w cdm:work_date_document ?d.}}ORDER BY DESC(?d)LIMIT 25';
 }
 
-function fetchCourtCases(cn){
-  var c=allCases.find(function(x){return x.n===cn});if(!c)return;
-  caseLoadingSet[cn]=true;render();
-  var q=buildQuery(cn,c.c||[]);
-  if(!q){delete caseLoadingSet[cn];caseLawCache[cn]=[];render();return}
+function fetchCL(cn){
+  var c=allC.find(function(x){return x.n===cn});if(!c)return;
+  clLoad[cn]=true;render();
+  var q=buildQ(cn,c.c||[]);
+  if(!q){delete clLoad[cn];clCache[cn]=[];render();return}
   var url=CELLAR+"?query="+encodeURIComponent(q)+"&format="+encodeURIComponent("application/sparql-results+json");
   fetch(PROXY+encodeURIComponent(url),{headers:{"Accept":"application/sparql-results+json"}})
     .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()})
     .then(function(d){
-      if(!d.results||!d.results.bindings)throw new Error("Bad response");
-      var seen={},unique=[];
-      d.results.bindings.forEach(function(b){
-        var obj={celex:b.c?b.c.value:"",title:b.t?b.t.value:"",date:b.d?b.d.value:""};
-        var key=obj.celex||obj.title;
-        if(key&&!seen[key]){seen[key]=true;unique.push(obj)}
-      });
-      delete caseLoadingSet[cn];caseLawCache[cn]=unique;render();
-    }).catch(function(err){
-      console.warn("SPARQL for "+cn+":",err.message);
-      delete caseLoadingSet[cn];caseLawCache[cn]={error:err.message};render();
-    });
+      if(!d.results||!d.results.bindings)throw new Error("Bad");
+      var seen={},u=[];d.results.bindings.forEach(function(b){
+        var o={celex:b.c?b.c.value:"",title:b.t?b.t.value:"",date:b.d?b.d.value:""};
+        var k=o.celex||o.title;if(k&&!seen[k]){seen[k]=true;u.push(o)}
+      });delete clLoad[cn];clCache[cn]=u;render();
+    }).catch(function(e){console.warn("SPARQL "+cn+":",e.message);delete clLoad[cn];clCache[cn]={error:e.message};render()});
 }
 
-// ——— Filter ———
 function doFilter(){
   var q=$("searchInput").value.trim().toLowerCase(),type=$("typeFilter").value;
-  currentPage=0;expandedCase=null;
+  page=0;expC=null;
   document.querySelectorAll(".pill").forEach(function(p){p.classList.toggle("active",q&&p.textContent.toLowerCase()===q)});
-  filtered=allCases.filter(function(c){
+  filt=allC.filter(function(c){
     if(type&&c.ct!==type)return false;
+    if(activePractice&&c.p!==activePractice)return false;
     if(!q)return true;
-    return[c.n,c.t,c.ct,c.lb].concat(c.c||[]).join(" ").toLowerCase().indexOf(q)!==-1;
-  });
-  render();
+    return[c.n,c.t,c.ct,c.lb,c.p||""].concat(c.c||[]).join(" ").toLowerCase().indexOf(q)!==-1;
+  });render();
 }
 
-// ——— Render ———
 function render(){
-  var rh=$("resultsHeader");
-  rh.style.display=filtered.length>0?"flex":"none";
-  rh.innerHTML='<span><strong>'+filtered.length+'</strong> of '+allCases.length+' decisions</span><span style="font-style:italic">Click to expand &amp; find court cases</span>';
+  var rh=$("resultsHdr");rh.style.display=filt.length>0?"flex":"none";
+  rh.innerHTML='<span><strong>'+filt.length+'</strong> of '+allC.length+' decisions'+(activePractice?' &middot; <strong>'+he(activePractice)+'</strong>':'')+'</span><span style="font-style:italic;font-size:11px">Click to expand</span>';
+  if(!filt.length&&allC.length){$("results").innerHTML='<div class="empty"><p>No matching cases.</p></div>';return}
+  var s=page*PS,pg=filt.slice(s,s+PS),html="";
 
-  if(!filtered.length&&allCases.length){$("results").innerHTML='<div class="empty"><h2 style="font-family:var(--font-display);font-size:20px;margin-bottom:8px">No results</h2><p style="color:var(--muted)">Try a different search.</p></div>';return}
-
-  var start=currentPage*PAGE_SIZE,page=filtered.slice(start,start+PAGE_SIZE),html="";
-
-  page.forEach(function(c){
-    var isExp=expandedCase===c.n;
-    var cases=caseLawCache[c.n];
-    var isLd=!!caseLoadingSet[c.n];
-    var arr=Array.isArray(cases)?cases:[];
-    var hasErr=cases&&cases.error;
-
-    html+='<div class="decision '+(isExp?"expanded":"")+'">';
-    html+='<div class="decision-row" onclick="toggleExpand(\''+esc(c.n)+'\')">';
-    html+='<div class="expand-icon">&#9654;</div>';
-    html+='<div class="case-num">'+h(c.n)+'</div>';
-    html+='<div class="decision-info"><div class="decision-title">'+h(c.t)+'</div>';
-    html+='<div class="decision-meta">';
-    if(c.d)html+='<span>'+fmtDate(c.d)+'</span>';
-    html+='<span class="tag '+(c.ct==="Cartel"?"tag-cartel":"tag-antitrust")+'">'+h(c.ct)+'</span>';
-    if(c.lb)html+='<span class="tag tag-lb">'+h(c.lb)+'</span>';
-    if(c.c&&c.c.length)html+='<span>'+h(c.c.slice(0,3).join(", "))+(c.c.length>3?" +"+( c.c.length-3)+" more":"")+'</span>';
-    html+='<a class="ext-link" href="https://competition-cases.ec.europa.eu/cases/'+encodeURIComponent(c.n)+'" target="_blank" onclick="event.stopPropagation()">DG&nbsp;COMP&nbsp;&#8599;</a>';
-    if(arr.length)html+='<span class="court-count">'+arr.length+' court case'+(arr.length!==1?"s":"")+'</span>';
+  pg.forEach(function(c){
+    var isE=expC===c.n,cl=clCache[c.n],isL=!!clLoad[c.n],arr=Array.isArray(cl)?cl:[],hasE=cl&&cl.error,sm=summaries[c.n];
+    html+='<div class="dec'+(isE?" exp":"")+'">';
+    html+='<div class="dec-row" onclick="tog(\''+esc(c.n)+'\')">';
+    html+='<div class="dec-arr">&#9654;</div>';
+    html+='<div class="dec-num">'+he(c.n)+'</div>';
+    html+='<div class="dec-info"><div class="dec-title">'+he(c.t)+'</div>';
+    html+='<div class="dec-meta">';
+    if(c.d)html+='<span>'+fD(c.d)+'</span>';
+    html+='<span class="tag '+(c.ct==="Cartel"?"t-ca":"t-at")+'">'+he(c.ct)+'</span>';
+    if(c.lb)html+='<span class="tag t-lb">'+he(c.lb)+'</span>';
+    if(c.p&&c.p!=="Other")html+='<span class="tag t-pr">'+he(c.p)+'</span>';
+    if(c.c&&c.c.length)html+='<span>'+he(c.c.slice(0,2).join(", "))+(c.c.length>2?" +"+(c.c.length-2):"")+'</span>';
+    html+='<a class="ext" href="https://competition-cases.ec.europa.eu/cases/'+encodeURIComponent(c.n)+'" target="_blank" onclick="event.stopPropagation()">DG&nbsp;COMP&nbsp;&#8599;</a>';
+    if(arr.length)html+='<span class="cc-count">'+arr.length+' court case'+(arr.length!==1?"s":"")+'</span>';
     html+='</div></div></div>';
 
-    if(isExp){
+    if(isE){
       html+='<div class="panel">';
+
+      // Legal summary (if available)
+      if(sm){
+        html+='<div class="summary-card"><h4>&#9878; Legal Analysis</h4>';
+        if(sm.conduct){html+='<div class="summary-section"><strong>Conduct</strong><p>'+he(sm.conduct)+'</p></div>'}
+        if(sm.finding){html+='<div class="summary-section"><strong>Commission Finding</strong><p>'+he(sm.finding)+'</p></div>'}
+        if(sm.court){html+='<div class="summary-section"><strong>Court Proceedings</strong><p>'+he(sm.court)+'</p></div>'}
+        if(sm.significance){html+='<div class="summary-section"><strong>Significance</strong><p>'+he(sm.significance)+'</p></div>'}
+        if(sm.fine&&sm.fine!=="0"&&sm.fine!=="0 (commitments)"&&sm.fine!=="Pending"&&sm.fine!=="See AT.39685"&&sm.fine!=="Small (regional case)"&&sm.fine!=="Not yet disclosed"){html+='<div class="summary-fine">Fine: EUR '+he(sm.fine)+'</div>'}
+        if(sm.fine==="0 (commitments)"){html+='<div style="margin-top:4px;font-size:11px;color:var(--gold);font-weight:600">Commitments decision (no fine)</div>'}
+        if(sm.fine==="Pending"){html+='<div style="margin-top:4px;font-size:11px;color:var(--muted);font-weight:600">Proceedings ongoing</div>'}
+        html+='</div>';
+      }
 
       // Info cards
       html+='<div class="panel-grid">';
-      html+='<div class="panel-card"><div class="panel-card-title">Decision Details</div><div class="panel-card-body">';
-      html+='<strong>'+h(c.ct)+'</strong> decision';
-      if(c.d)html+=' adopted <strong>'+fmtDate(c.d)+'</strong>';
-      if(c.lb)html+='<br>Legal basis: <strong>'+h(c.lb)+'</strong>';
+      html+='<div class="p-card"><div class="p-card-t">Decision</div><div class="p-card-b">';
+      html+='<strong>'+he(c.ct)+'</strong>';
+      if(c.p&&c.p!=="Other")html+=' &middot; '+he(c.p);
+      if(c.d)html+='<br>Date: <strong>'+fD(c.d)+'</strong>';
+      if(c.lb)html+='<br>Legal basis: '+he(c.lb);
       html+='</div></div>';
-      html+='<div class="panel-card"><div class="panel-card-title">Parties</div><div class="panel-card-body">';
-      if(c.c&&c.c.length){c.c.forEach(function(co){html+='<span class="company">'+h(co)+'</span>';})}
-      else html+='<span style="color:var(--muted)">No companies listed</span>';
-      html+='</div></div>';
-      html+='</div>';
+      html+='<div class="p-card"><div class="p-card-t">Parties</div><div class="p-card-b">';
+      if(c.c&&c.c.length){c.c.forEach(function(co){html+='<span class="company">'+he(co)+'</span>'})}
+      else html+='<span style="color:var(--muted)">Not listed</span>';
+      html+='</div></div></div>';
 
-      // Court cases
-      html+='<div class="section-title">Court Proceedings</div>';
-      if(isLd){
-        html+='<div class="case-loading"><div class="mini-spinner"></div>Searching EU CELLAR for linked court cases...</div>';
-      } else if(arr.length>0){
-        arr.forEach(function(cc){
-          html+='<div class="court-case"><div class="court-case-title">'+h(cc.title||cc.celex||"Court case")+'</div>';
-          html+='<div class="court-case-meta">';
-          if(cc.celex)html+='<span class="celex">'+h(cc.celex)+'</span>';
-          if(cc.date)html+='<span>'+fmtDate(cc.date)+'</span>';
-          if(cc.celex)html+='<a class="ext-link" href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:'+encodeURIComponent(cc.celex)+'" target="_blank">EUR-Lex&nbsp;&#8599;</a>';
-          if(cc.celex)html+='<a class="ext-link" href="https://infocuria.curia.europa.eu/tabs/affair?lang=en&searchTerm=%22'+encodeURIComponent(cc.celex)+'%22" target="_blank">InfoCuria&nbsp;&#8599;</a>';
-          html+='</div></div>';
-        });
-      } else if(hasErr||cases!==undefined){
-        html+='<div class="no-results">No court cases found automatically. Use the search links below.</div>';
-      }
+      // Court cases (SPARQL)
+      html+='<div class="sec-title">Court Proceedings (EU CELLAR)</div>';
+      if(isL){html+='<div class="loading"><div class="mspin"></div>Querying CELLAR...</div>'}
+      else if(arr.length>0){arr.forEach(function(cc){
+        html+='<div class="cc"><div class="cc-title">'+he(cc.title||cc.celex)+'</div><div class="cc-meta">';
+        if(cc.celex)html+='<span class="celex">'+he(cc.celex)+'</span>';
+        if(cc.date)html+='<span>'+fD(cc.date)+'</span>';
+        if(cc.celex)html+='<a class="ext" href="https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:'+encodeURIComponent(cc.celex)+'" target="_blank">EUR-Lex&nbsp;&#8599;</a>';
+        if(cc.celex)html+='<a class="ext" href="https://infocuria.curia.europa.eu/tabs/affair?lang=en&searchTerm=%22'+encodeURIComponent(cc.celex)+'%22" target="_blank">InfoCuria&nbsp;&#8599;</a>';
+        html+='</div></div>'})}
+      else if(hasE||cl!==undefined){html+='<div class="no-res">No results from CELLAR. Use the search links below.</div>'}
 
       // Action links
       var n=c.n.replace(/^AT\./,"").replace(/^COMP\//,"");
-      html+='<div class="action-links">';
-      html+='<a class="action-btn dark" href="https://infocuria.curia.europa.eu/tabs/affair?lang=en&searchTerm=%22'+encodeURIComponent(n)+'%22" target="_blank" onclick="event.stopPropagation()">Search InfoCuria for '+h(c.n)+' &#8599;</a>';
-      if(c.c&&c.c.length){
-        var w=c.c[0].split(/[\s,\/\(\)]+/).filter(function(x){return x.length>2});
-        if(w.length)html+='<a class="action-btn outline" href="https://infocuria.curia.europa.eu/tabs/affair?lang=en&searchTerm=%22'+encodeURIComponent(w[0])+'%22+Commission" target="_blank" onclick="event.stopPropagation()">'+h(w[0])+' v Commission &#8599;</a>';
-      }
-      html+='<a class="action-btn outline" href="https://eur-lex.europa.eu/search.html?scope=EURLEX&text=%22'+encodeURIComponent(n)+'%22&type=quick" target="_blank" onclick="event.stopPropagation()">EUR-Lex &#8599;</a>';
-      html+='<a class="action-btn outline" href="https://competition-cases.ec.europa.eu/cases/'+encodeURIComponent(c.n)+'" target="_blank" onclick="event.stopPropagation()">DG COMP Page &#8599;</a>';
-      html+='</div>';
-
-      html+='</div>';
+      html+='<div class="actions">';
+      html+='<a class="abtn dk" href="https://infocuria.curia.europa.eu/tabs/affair?lang=en&searchTerm=%22'+encodeURIComponent(n)+'%22" target="_blank" onclick="event.stopPropagation()">Search InfoCuria &#8599;</a>';
+      if(c.c&&c.c.length){var w=c.c[0].split(/[\s,\/\(\)]+/).filter(function(x){return x.length>2});if(w.length)html+='<a class="abtn ol" href="https://infocuria.curia.europa.eu/tabs/affair?lang=en&searchTerm=%22'+encodeURIComponent(w[0])+'%22+Commission" target="_blank" onclick="event.stopPropagation()">'+he(w[0])+' v Commission &#8599;</a>'}
+      html+='<a class="abtn ol" href="https://eur-lex.europa.eu/search.html?scope=EURLEX&text=%22'+encodeURIComponent(n)+'%22&type=quick" target="_blank" onclick="event.stopPropagation()">EUR-Lex &#8599;</a>';
+      html+='<a class="abtn ol" href="https://competition-cases.ec.europa.eu/cases/'+encodeURIComponent(c.n)+'" target="_blank" onclick="event.stopPropagation()">DG COMP &#8599;</a>';
+      html+='</div></div>';
     }
     html+='</div>';
   });
 
-  // Pagination
-  var tp=Math.ceil(filtered.length/PAGE_SIZE);
-  if(tp>1){
-    html+='<div class="pagination">';
-    html+='<button class="pg-btn" onclick="goPage('+(currentPage-1)+')" '+(currentPage===0?"disabled":"")+'>&#8592; Prev</button>';
-    for(var i=Math.max(0,currentPage-4);i<Math.min(tp,currentPage+5);i++)
-      html+='<button class="pg-btn '+(i===currentPage?"active":"")+'" onclick="goPage('+i+')">'+(i+1)+'</button>';
-    if(Math.min(tp,currentPage+5)<tp)html+='<span style="color:var(--muted);font-size:12px;padding:8px">... '+tp+'</span>';
-    html+='<button class="pg-btn" onclick="goPage('+(currentPage+1)+')" '+(currentPage>=tp-1?"disabled":"")+'>Next &#8594;</button>';
-    html+='</div>';
-  }
+  var tp=Math.ceil(filt.length/PS);
+  if(tp>1){html+='<div class="pagination">';
+    html+='<button class="pg" onclick="goP('+(page-1)+')" '+(page===0?"disabled":"")+'>&#8592; Prev</button>';
+    for(var i=Math.max(0,page-4);i<Math.min(tp,page+5);i++)html+='<button class="pg'+(i===page?" act":"")+'" onclick="goP('+i+')">'+(i+1)+'</button>';
+    if(Math.min(tp,page+5)<tp)html+='<span style="color:var(--muted);font-size:11px;padding:8px">...'+tp+'</span>';
+    html+='<button class="pg" onclick="goP('+(page+1)+')" '+(page>=tp-1?"disabled":"")+'>Next &#8594;</button></div>'}
   $("results").innerHTML=html;
 }
 
-function goPage(p){var tp=Math.ceil(filtered.length/PAGE_SIZE);if(p<0||p>=tp)return;currentPage=p;expandedCase=null;render();window.scrollTo({top:$("results").offsetTop-80,behavior:"smooth"})}
-function toggleExpand(cn){if(expandedCase===cn){expandedCase=null}else{expandedCase=cn;if(caseLawCache[cn]===undefined)fetchCourtCases(cn)}render();
-  if(expandedCase){setTimeout(function(){var el=document.querySelector(".decision.expanded");if(el)el.scrollIntoView({behavior:"smooth",block:"nearest"})},50)}
-}
-
-function h(s){return s?String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"):""}
+function goP(p){var tp=Math.ceil(filt.length/PS);if(p<0||p>=tp)return;page=p;expC=null;render();window.scrollTo({top:$("results").offsetTop-80,behavior:"smooth"})}
+function tog(cn){if(expC===cn){expC=null}else{expC=cn;if(clCache[cn]===undefined)fetchCL(cn)}render();if(expC){setTimeout(function(){var el=document.querySelector(".dec.exp");if(el)el.scrollIntoView({behavior:"smooth",block:"nearest"})},60)}}
+function he(s){return s?String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"):""}
 function esc(s){return s?s.replace(/'/g,"\\'"):""}
-function fmtDate(d){try{return new Date(d).toLocaleDateString("en-GB",{year:"numeric",month:"short",day:"numeric"})}catch(e){return d}}
+function fD(d){try{return new Date(d).toLocaleDateString("en-GB",{year:"numeric",month:"short",day:"numeric"})}catch(e){return d}}
 
-loadCaseData();
+loadData();
 </script>
 </body>
 </html>
